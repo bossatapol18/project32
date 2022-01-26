@@ -1,6 +1,5 @@
 <?php
-
-require 'connection.php';
+require '../../connection/connection.php';
         $query = "SELECT * from select_status ";
         $result = sqlsrv_query($conn, $query);
         ?>

@@ -66,7 +66,8 @@ $query3 = sqlsrv_query($conn, $sql3);
                     <div class="card   mb-3" style="max-width:100%">
                         <div class="card-header text-white bg-primary">ที่มาวาระจากในที่ประชุมสมอ.</div>
                         <div class="card-body">
-                            <p class="card-text">วันที่ ...<br>วาระที่ ... </p>
+                            <p class="card-text"><?php echo $result['standard_meet']; ?> </p>
+                            <p class="card-text"><?php echo DateThai($result['standard_survey']); ?> </p>
                         </div>
                     </div>
                 </div>
@@ -85,7 +86,7 @@ $query3 = sqlsrv_query($conn, $sql3);
                     <div class="card  mb-3" style="max-width: 100%">
                         <div class="card-header text-white bg-primary ">จดหมายสอบถามจาก สมอ.</div>
                         <div class="card-body">
-                            <p class="card-text">วันที่ ... </p>
+                            <p class="card-text"><?php echo $result['standard_pick']; ?></p>
                         </div>
                     </div>
                 </div>
@@ -121,6 +122,38 @@ $query3 = sqlsrv_query($conn, $sql3);
                         </select>
                         <?php } ?>
 
+                    </div>
+                </div>
+
+                  <!-- หลายฟอร์ม -->
+                  <div class="col-sm-6">
+                    <div class="card   mb-3" style="max-width:100%">
+                        <div class="card-header text-white bg-primary">ประเภทมาตรฐาน</div>
+                        <?php
+                        $standarsidtb = $_REQUEST['standard_idtb'];
+                        $sql3 = "SELECT * FROM dimension_manda WHERE standard_idtb  = '$standarsidtb' ";
+                        $query4 = sqlsrv_query($conn, $sql3);
+                        while ($result3 = sqlsrv_fetch_array($query4, SQLSRV_FETCH_ASSOC)) { ?>
+                            <?php $manda =  $result3['manda_id']; ?>
+                            <select class="form-control" name="manda_id[]" id="manda_id" style="height: unset !important;" disabled>
+                                <option value="">กรุณาเลือกประเภทมาตรฐาน</option>
+                                <?php
+                                $sql33 = "SELECT * FROM manda_tb";
+                                $query43 = sqlsrv_query($conn, $sql33);
+                                while ($result43 = sqlsrv_fetch_array($query43, SQLSRV_FETCH_ASSOC)) {
+                                    $manda2 =  $result43['manda_id'];
+                                    if ($manda == $manda2) {
+                                        $c = "selected";
+                                    } else {
+                                        $c = "";
+                                    }
+                                ?>
+
+                                    <option value="<?php echo $result43['manda_id'];  ?>" <?php echo $c; ?>>
+                                        <?php echo $result43['manda_name']; ?></option>
+                                <?php } ?>
+                            </select>
+                        <?php } ?>
                     </div>
                 </div>
 

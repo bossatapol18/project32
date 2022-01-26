@@ -166,9 +166,9 @@ $query2 = sqlsrv_query($conn , $sql2);
                             <td class="align-middle"><?= $i++ ?></td>
                             <td class="align-middle"><?= dateThai($data['standard_create'])  ?></td>
                             <td class="align-middle"><?= $data['standard_meet'] ?></td>
-                            <td>วันที่ประชุมใส่ตรงนี้ ....</td>
+                            <td class="align-middle"><?= dateThai($data['standard_pick']) ?></td>
                             <td class="align-middle"><?= $data['standard_number'] ?></td>
-                            <td class="align-middle"><?= $data['standard_mandatory'] ?></td>
+                            <td class="align-middle"><?= $data['standard_detail'] ?></td>
                             <?php if($data['standard_day'] == '') : ?>
                             <td class="align-middle">ยังไม่ได้ระบุสถานะ</td>
                             <?php endif ; ?>

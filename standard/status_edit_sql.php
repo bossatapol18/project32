@@ -27,8 +27,6 @@ if (isset($_POST) && !empty($_POST)) {
     $standard_number = $_POST['standard_number'];
     $standard_meet = $_POST['standard_meet'];
     $standard_detail = $_POST['standard_detail'];
-    $standard_mandatory = $_POST['standard_mandatory'];
-    $standard_tacking = $_POST['standard_tacking'];
     $standard_note = $_POST['standard_note'];
     $standard_status = $_POST['standard_status'];
     $standard_day = datetodb( $_POST['standard_day']);
@@ -37,8 +35,6 @@ if (isset($_POST) && !empty($_POST)) {
         SET standard_number= '$standard_number' ,
             standard_meet = '$standard_meet' , 
             standard_detail = '$standard_detail' ,
-            standard_mandatory = '$standard_mandatory' ,
-            standard_tacking = '$standard_tacking' ,
             standard_note = '$standard_note',
             standard_status ='$standard_status' ,
             standard_day = '$standard_day'
@@ -176,22 +172,23 @@ if (isset($_POST) && !empty($_POST)) {
         }
     }
 
-    //ประเภทผลิตภัณฑ์
-    $count_type = count($_REQUEST['id_dimension_type']);
+    //ประเภทมาตรฐาน
+    $count_manda = count($_REQUEST['id_dimension_manda']);
 
-    for ($i = 0; $i < $count_type; $i++) {
-        $id_dimension_type = $_REQUEST['id_dimension_type'][$i];
-        $type_id = $_REQUEST['type_id'][$i];
-        if ($id_dimension_type != '' && $type_id != '') {
-            $sql_update_type = " UPDATE dimension_type SET type_id = '$type_id' WHERE id_dimension_type = '$id_dimension_type'";
-            $show_type = sqlsrv_query($conn, $sql_update_type);
+    for ($i = 0; $i < $count_manda; $i++) {
+        $id_dimension_manda = $_REQUEST['id_dimension_manda'][$i];
+        $manda_id = $_REQUEST['manda_id'][$i];
+        if ($id_dimension_manda != '' && $manda_id != '') {
+            $sql_update_manda = " UPDATE dimension_manda SET manda_id = '$manda_id' WHERE id_dimension_manda = '$id_dimension_manda'";
+            $show_manda = sqlsrv_query($conn, $sql_update_manda);
         }
-        if ($id_dimension_type == '' && $type_id != '') {
-            $sql_insert_type = "INSERT INTO dimension_type (standard_idtb,type_id) VALUES (?,?);";
-            $value_type = array($standard_idtb, $type_id);
-            $insert_type = sqlsrv_query($conn, $sql_insert_type, $value_type);
+        if ($id_dimension_manda == '' && $manda_id != '') {
+            $sql_insert_manda = "INSERT INTO dimension_manda (standard_idtb,manda_id) VALUES (?,?);";
+            $value_manda = array($standard_idtb, $manda_id);
+            $insert_manda = sqlsrv_query($conn, $sql_insert_manda, $value_manda);
         }
     }
+
 
      if (sqlsrv_query($conn, $sql)) {
         $alert = '<script type="text/javascript">';

@@ -1,5 +1,5 @@
 <?php
-require './connection.php';
+require '../../connection/connection.php';
 $page = (isset($_GET['page'])) ? $_GET['page'] : '';
 $strKeyword = '';
 if (isset($_POST) && !empty($_POST)) {

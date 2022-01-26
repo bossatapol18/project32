@@ -2,7 +2,7 @@
 
 //fetch.php
 
-require 'connection.php' ;
+require '../../connection/connection.php';
 
 if($_POST["query"] != '')
 {

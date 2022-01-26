@@ -1,5 +1,5 @@
 <?php
-require './connection.php';
+require '../../connection/connection.php';
 $query = "SELECT * from agency_tb  ";
 $result = sqlsrv_query($conn,$query);
 ?>
